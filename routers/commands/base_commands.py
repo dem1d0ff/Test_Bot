@@ -3,7 +3,7 @@ from aiogram.enums import ChatAction, ParseMode
 from aiogram.filters import CommandStart, Command
 from aiogram.utils.chat_action import ChatActionSender
 
-from keyboards.stard_keyboard import ButtonText, start_kb
+from keyboards.start_keyboard import ButtonText, start_kb
 from keyboards.inline_keyboards.info_keyboard import build_info_keyboard
 
 router = Router(name=__name__)
