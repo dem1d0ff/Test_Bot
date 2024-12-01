@@ -5,13 +5,20 @@ from aiogram.types import InlineKeyboardMarkup
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 
 class geodesyActions(IntEnum):
-    BLH_XYZ = auto()
-    XYZ_BLH = auto()
-    SK_SK = auto()
+    CT_BLH_XYZ = auto()
+    CT_SK_SK = auto()
     root = auto()
 
-class geodesyCbData(CallbackData, prefix="geodesy"):
+class geodesyCbData(CallbackData, prefix="CT"):
     action: geodesyActions
+
+class BLHXYZActions(IntEnum):
+    BLH_XYZ = auto()
+    XYZ_BLH = auto()
+    root = auto()
+
+class BLHXYZCbData(CallbackData, prefix="BLHXYZ"):
+    action: BLHXYZActions
 
 class ellipsoidsActions(IntEnum):
     WGS_84 = auto()
@@ -27,16 +34,29 @@ class ellipsoidsCbData(CallbackData, prefix="ellipsoids"):
 def build_geodesy_kb():
     builder = InlineKeyboardBuilder()
     builder.button(
-        text="Из BLH(°) в XYZ",
-        callback_data=geodesyCbData(action=geodesyActions.BLH_XYZ).pack()
+        text="BLH(°) ↔ XYZ",
+        callback_data=geodesyCbData(action=geodesyActions.CT_BLH_XYZ).pack()
     )
     builder.button(
-        text="Из XYZ в BLH",
-        callback_data=geodesyCbData(action=geodesyActions.XYZ_BLH).pack()
+        text="СК ↔ СК",
+        callback_data=geodesyCbData(action=geodesyActions.CT_SK_SK).pack()
+    )
+    builder.adjust(1)
+    return builder.as_markup()
+
+def build_BLH_XYZ_kb():
+    builder = InlineKeyboardBuilder()
+    builder.button(
+        text="BLH(°) → XYZ",
+        callback_data=BLHXYZCbData(action=BLHXYZActions.BLH_XYZ).pack()
     )
     builder.button(
-        text="Из СК в другую СК",
-        callback_data=geodesyCbData(action=geodesyActions.SK_SK).pack()
+        text="XYZ → BLH",
+        callback_data=BLHXYZCbData(action=BLHXYZActions.XYZ_BLH).pack()
+    )
+    builder.button(
+        text="🔙 Назад",
+        callback_data=geodesyCbData(action=geodesyActions.root).pack()
     )
     builder.adjust(1)
     return builder.as_markup()
@@ -65,7 +85,7 @@ def build_ellipsoid_kb():
     )
     builder.button(
         text="🔙 Назад",
-        callback_data=geodesyCbData(action=geodesyActions.root).pack()
+        callback_data=BLHXYZCbData(action=BLHXYZActions.root).pack()
     )
     builder.adjust(1)
     return builder.as_markup()
@@ -74,7 +94,7 @@ def build_ct_kb():
     builder = InlineKeyboardBuilder()
     builder.button(
         text = "🔙 Назад",
-        callback_data = ellipsoidsCbData(action=ellipsoidsActions.root).pack()
+        callback_data=ellipsoidsCbData(action=ellipsoidsActions.root).pack()
     )
     builder.adjust(1)
     return builder.as_markup()

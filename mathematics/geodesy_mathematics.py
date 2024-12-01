@@ -1,8 +1,6 @@
 import math
 
-def BLH_XYZ(B, L, H):
-    a = 6378245
-    e_2 = 0.006693421623
+def BLH_XYZ(a, e_2, B, L, H):
     B = math.radians(B)
     L = math.radians(L)
     H = H
