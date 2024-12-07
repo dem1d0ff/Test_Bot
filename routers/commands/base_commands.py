@@ -11,7 +11,7 @@ router = Router(name=__name__)
 text_help = '''
 /start - запуск бота 
 /help - помощь
-/BLH_XYZ - перевод координат BLH в XYZ
+/geodesy - геодезический калькулятор
 /info - полезная информация
 '''
 

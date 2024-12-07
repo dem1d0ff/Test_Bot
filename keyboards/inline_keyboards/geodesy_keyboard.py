@@ -34,11 +34,11 @@ class ellipsoidsCbData(CallbackData, prefix="ellipsoids"):
 def build_geodesy_kb():
     builder = InlineKeyboardBuilder()
     builder.button(
-        text="BLH(°) ↔ XYZ",
+        text="BLH(°) ⇔ XYZ",
         callback_data=geodesyCbData(action=geodesyActions.CT_BLH_XYZ).pack()
     )
     builder.button(
-        text="СК ↔ СК",
+        text="СК ⇔ СК",
         callback_data=geodesyCbData(action=geodesyActions.CT_SK_SK).pack()
     )
     builder.adjust(1)
@@ -55,7 +55,7 @@ def build_BLH_XYZ_kb():
         callback_data=BLHXYZCbData(action=BLHXYZActions.XYZ_BLH).pack()
     )
     builder.button(
-        text="🔙 Назад",
+        text="◀ Назад",
         callback_data=geodesyCbData(action=geodesyActions.root).pack()
     )
     builder.adjust(1)
@@ -64,27 +64,27 @@ def build_BLH_XYZ_kb():
 def build_ellipsoid_kb():
     builder = InlineKeyboardBuilder()
     builder.button(
-        text="WGS-84",
+        text="🌐 WGS-84",
         callback_data=ellipsoidsCbData(action=ellipsoidsActions.WGS_84).pack()
     )
     builder.button(
-        text="ГСК-2011",
+        text="🌐 ГСК-2011",
         callback_data=ellipsoidsCbData(action=ellipsoidsActions.GSK_2011).pack()
     )
     builder.button(
-        text="ПЗ-90.11",
+        text="🌐 ПЗ-90.11",
         callback_data=ellipsoidsCbData(action=ellipsoidsActions.PZ_90_11).pack()
     )
     builder.button(
-        text="Красовский (СК-42/95)",
+        text="🌐 Красовский (СК-42/95)",
         callback_data=ellipsoidsCbData(action=ellipsoidsActions.Krasovsky_42).pack()
     )
     builder.button(
-        text="GRS-80",
+        text="🌐 GRS-80",
         callback_data=ellipsoidsCbData(action=ellipsoidsActions.GRS_80).pack()
     )
     builder.button(
-        text="🔙 Назад",
+        text="◀ Назад",
         callback_data=BLHXYZCbData(action=BLHXYZActions.root).pack()
     )
     builder.adjust(1)
@@ -93,7 +93,7 @@ def build_ellipsoid_kb():
 def build_ct_kb():
     builder = InlineKeyboardBuilder()
     builder.button(
-        text = "🔙 Назад",
+        text="◀ Назад",
         callback_data=ellipsoidsCbData(action=ellipsoidsActions.root).pack()
     )
     builder.adjust(1)
